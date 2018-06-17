@@ -9,6 +9,12 @@ const {
 const path = require('path')
 const url = require('url')
 
+// De utils sacamos las constantes que van a recoger las variables mandadas desde el front
+const {
+  CATCH_ON_MAIN,
+  MANDAR_AL_RENDERER_REACT
+} = require('./utils/constants');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -60,6 +66,14 @@ function createWindow() {
     mainWindow = null;
   });
 }
+
+// Recuperamos la variable mandada desde el front para desplegarla/usuarla en la consola o propiedades de
+// ventana de la app
+ipcMain.on(CATCH_ON_MAIN, (event, arg) => {
+  console.log('Un mensaje en el main: ', arg);
+  // Ahora mandamos un mensaje del main al rederer
+  mainWindow.send(MANDAR_AL_RENDERER_REACT, 'Holi soy un mensajito de main XD');
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
