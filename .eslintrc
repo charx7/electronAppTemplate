@@ -1,0 +1,22 @@
+{
+    "parser": "babel-eslint",
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": ["jest"],
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true,
+        "jest/globals": true
+    },
+    "rules": {
+        "no-console":"off",
+        "no-unused-vars": ["warn", {"argsIgnorePattern": "next"}]
+    }
+}
