@@ -4,8 +4,14 @@ import {
   CATCH_ON_MAIN,
   MANDAR_AL_RENDERER_REACT
 } from  '../../../utils/constants';
+import {
+  HashRouter,
+  Route,
+  Router
+} from 'react-router-dom';
 
 class HelloWorld extends React.Component {
+
   manejaClickBoton = () => {
     console.log('Auch me picastes');
     // Mandamos la informacion al metodo de main ej: utilidad de cambiar la dimension de nuestra ventana
@@ -29,12 +35,9 @@ class HelloWorld extends React.Component {
   render () {
     return (
       <div>
-        <h1>Mi primera App electron!</h1>
-        <button
-          onClick = {this.manejaClickBoton}
-        >
-          MandarMensajes
-        </button>
+        <h3>
+          Hola soy Prueba
+        </h3>
       </div>
     )
   }
