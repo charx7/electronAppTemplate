@@ -1,10 +1,13 @@
 'use strict';
+// Para las react-dev-tools y redux-dev-tools
+const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
 // Import parts of electron to use
 const {
   app, 
   ipcMain,
   BrowserWindow,
+  Notification
 } = require('electron');
 const path = require('path')
 const url = require('url')
@@ -65,7 +68,25 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  // Para instalar los react dev-tools
+  installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => {
+      console.log(`Agregada extension: ${name}`);
+    }).catch((error) => {
+      console.log("Un error ocurrio cuando se instalaban las React Developer Tools", error);
+    });
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => {
+      console.log(`Agregada extension: ${name}`);
+    }).catch((error) => {
+      console.log("Un error ocurrio cuando se instalaban las Redux Developer Tools", error);
+    });  
+  // Terminan las DevTools
 }
+
+// Para darle un ID a la App
+app.setAppUserModelId("com.dev.name");
 
 // Recuperamos la variable mandada desde el front para desplegarla/usuarla en la consola o propiedades de
 // ventana de la app
@@ -73,6 +94,15 @@ ipcMain.on(CATCH_ON_MAIN, (event, arg) => {
   console.log('Un mensaje en el main: ', arg);
   // Ahora mandamos un mensaje del main al rederer
   mainWindow.send(MANDAR_AL_RENDERER_REACT, 'Holi soy un mensajito de main XD');
+  // Una nueva notificacion, la mandamos al render
+  let notificacion = new Notification("it", {body: 'works!'}).show();
+
+  console.log("El objeto de notificacion es:", notificacion)
+
+  // notificacion.onClick = () => {
+  //   console.log('Hiciste click en la notificacion');
+  // };
+
 });
 
 // This method will be called when Electron has finished

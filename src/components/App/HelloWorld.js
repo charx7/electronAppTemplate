@@ -10,6 +10,7 @@ class HelloWorld extends React.Component {
     console.log('Auch me picastes');
     // Mandamos la informacion al metodo de main ej: utilidad de cambiar la dimension de nuestra ventana
     ipcRenderer.send(CATCH_ON_MAIN, 'Oli soy un rikolisioso mensaje del renderer (React)'); 
+
   }
 
   // Para mandar un mensaje del renderer al main
